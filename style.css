@@ -1,3 +1,9 @@
 .modal {
     background: #c6d0ff7a;
 }
+
+.text-error {
+	color: red;
+	font-size: 12px;
+    font-weight: bold;
+}

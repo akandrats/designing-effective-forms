@@ -9,99 +9,133 @@
     <script src="script.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" defer></script>
+	<script src="authentication.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 
     <title>Efektywne formularze</title>
 </head>
 
 <body>
+	<div class="container mt-4 mb-4">
+		<button id="signInButton" class="btn btn-primary">Create Account / Sign In</button>
+		<button id="signOutButton" class="btn btn-secondary">Sign Out</button>
+	</div>
     <div class="container">
         <h1>Uzupełnij formularz</h1>
-        <form id="form">
-            <div class="mb-3">
-                <label for="firstName" class="form-label">Imię</label>
-                <input type="text" class="form-control" id="firstName" placeholder="Wpisz imię" required>
-            </div>
-            <div class="mb-3">
-                <label for="lastName" class="form-label">Nazwisko</label>
-                <input type="text" class="form-control" id="lastName" placeholder="Wpisz nazwisko" required>
-            </div>
-            <div class="mb-3">
-                <label for="street" class="form-label">Ulica</label>
-                <input type="text" class="form-control" id="street" placeholder="Wpisz ulicę" required>
-            </div>
-            <div class="mb-3">
-                <label for="country" class="form-label">Kraj</label>
-                <select class="form-select" id="country" required>
-                    <option value="">Wybierz kraj</option>
-                    <!-- Options will be filled by JavaScript -->
-                </select>
-            </div>
-            <div class="row mb-3">
-                <label for="phoneNumber" class="form-label">Numer telefonu komórkowego</label>
-                <div class="input-group">
-                    <select class="form-select" id="countryCode" aria-label="Wybierz numer kierunkowy">
-                        <option selected>Wybierz...</option>
-                        <option value="+48">+48 (Polska)</option>
-                        <option value="+1">+1 (Stany Zjednoczone)</option>
-                        <!-- Dodaj więcej opcji, jeśli jest to potrzebne -->
-                    </select>
-                    <input type="text" class="form-control" id="phoneNumber" placeholder="Wpisz numer komórkowy"
-                        required>
-                </div>
-            </div>
-            <div class="mb-3">
-                <label for="city" class="form-label">Miasto</label>
-                <input type="text" class="form-control" id="city" placeholder="Wpisz miasto" required>
-            </div>
-            <div class="mb-3">
-                <label for="zipCode" class="form-label">Kod pocztowy</label>
-                <input type="text" class="form-control" id="zipCode" placeholder="Wpisz kod pocztowy" required>
-            </div>
-            <div class="mb-3">
-                <label for="shippingMethod" class="form-label">Rodzaj przesyłki</label>
-                <select class="form-select" id="shippingMethod" required>
-                    <option value="">Wybierz rodzaj przesyłki</option>
-                    <option value="DPD">DPD</option>
-                    <option value="InPost">InPost</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="paymentMethod" class="form-label">Rodzaj płatności</label>
-                <select class="form-select" id="paymentMethod" required>
-                    <option value="">Wybierz rodzaj płatności</option>
-                    <option value="karta">Karta</option>
-                    <option value="blik">BLIK</option>
-                    <option value="pośrednik">Pośrednik płatności</option>
-                </select>
-            </div>
+        <form id="form" action="#" class="was-validated">
+			<div class="form-row">
+				<input type="submit" id="submitButton" hidden />
+			<div class="input-group">
+				<span class="input-group-text">Imię i Nazwisko &nbsp;<i class="bi bi-question-circle" data-toggle="tooltip" title="Wprowadź swoje imie i nazwisko"></i></span>
+				<input id="firstName" type="text" aria-label="Imię" class="form-control" placeholder="Wpisz imię" required>
+				<input id="lastName" type="text" aria-label="Nazwisko" class="form-control" placeholder="Wpisz nazwisko" required>
+				<div class="valid-feedback">Prawidłowo</div>
+				<div class="invalid-feedback">Proszę wypełnić to pola dotyczacymi imienia i nazwiska</div>				
+			</div>
+			<br>
+			<div class="input-group">
+				<span class="input-group-text">Email address &nbsp;<i class="bi bi-envelope" data-toggle="tooltip" title="Wprowadź swój email"></i></span>
+				<input id="email" type="email" aria-label="Email" class="form-control" placeholder="Wpisz adres email" required>
+				<div class="valid-feedback">Prawidłowo</div>
+				<div class="invalid-feedback">Proszę wypełnić to pole "Email address" z poprawnymi danymi</div>	
+			</div>
+			<br>
+			<div class="input-group">
+				<span class="input-group-text">Miasto &nbsp;<i class="bi bi-question-circle" data-toggle="tooltip" title="Wprowadź miasto zamieszkania"></i></span>
+				<input id="city" type="text" aria-label="City" class="form-control" placeholder="Wpisz miasto" required>
 
-            <!-- Dodatkowe pola, np. dane do faktury -->
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1">
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
-            </div>
-            <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="vatUE">
-                <label class="form-check-label" for="vatUE">VAT UE</label>
-            </div>
-            <div class="mb-3">
-                <label for="vatNumber" class="form-label">VAT Number</label>
-                <input type="text" class="form-control" id="vatNumber" aria-describedby="vatHelp">
-                <div id="vatHelp" class="form-text">Kod kraju państwa członkowskiego i seria cyfr unikalnych dla tego
-                    podmiotu gospodarczego.</div>
-            </div>
+				<span class="input-group-text">Kod pocztowy &nbsp;<i class="bi bi-question-circle" data-toggle="tooltip" title="Wprowadź swój kod pocztowy"></i></span>
+				<input id="zipCode" type="text" aria-label="ZipCode" class="form-control" placeholder="Wpisz kod pocztowy" required>
 
-            <div class="mb-3">
+				<span class="input-group-text">Ulica &nbsp;<i class="bi bi-question-circle" data-toggle="tooltip" title="Wprowadź ulice"></i></span>
+				<input id="street" type="text" aria-label="Ulica" class="form-control" placeholder="Wpisz ulicę" required>
+				<div class="valid-feedback">Prawidłowo</div>
+				<div class="invalid-feedback">Proszę wypełnić to pola dotyczacymi miasta, kodu pocztowego i ulicy</div>	
+			</div>
+			<br>
+			<div class="input-group">
+				<div class="mb-3">
+					<label for="country" class="form-label">Kraj &nbsp;<i class="bi bi-question-circle" data-toggle="tooltip" title="Wybierz kraj zamieszkania"></i></label>
+					<select class="form-select" id="country" required autocomplete="country">
+						<option value="" >Wybierz kraj</option>
+					</select>
+					<div class="valid-feedback">Prawidłowo</div>
+					<div class="invalid-feedback">Proszę wypełnić to pole dotyczące kraju</div>	
+				</div>
+				<div class="row mb-3">
+					<label for="phoneNumber" class="form-label">Numer telefonu komórkowego &nbsp;<i class="bi bi-question-circle" data-toggle="tooltip" title="Wprowadź swój numer kontaktowy"></i></label>
+					<div class="input-group">
+						<select class="form-select" id="countryCode" aria-label="Wybierz numer kierunkowy">
+							<option selected>Wybierz...</option>
+							<option value="+48">+48 (Polska)</option>
+							<option value="+1">+1 (Stany Zjednoczone)</option>
+						</select>
+						<input type="text" class="form-control id="phoneNumber" placeholder="Wpisz numer komórkowy"
+						pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" required>
+						<div class="valid-feedback">Prawidłowo</div>
+						<div class="invalid-feedback">Proszę wypełnić to pole zgodnie z paternem 123-456-789</div>	
+					</div>
+				</div>
+			</div>
+			<div class="mb-3">
+				<label for="shippingMethod" class="form-label">Rodzaj przesyłki &nbsp;<i class="bi bi-question-circle" data-toggle="tooltip" title="Wybierz rodzaj przesyłki"></i></label>
+				<div id="shippingMethod" class="form-check form-check-inline">
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="shippingOptions" id="dpd" value="dpd" required>
+						<label class="form-check-label" for="dpd">DPD</label>
+					</div>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="shippingOptions" id="inpost" value="inpost" required>
+						<label class="form-check-label" for="inpost">InPost</label>
+					</div>
+					<div class="valid-feedback">Prawidłowo</div>
+					<div class="invalid-feedback">Proszę zaznaczyc jeden z dostępnych rodzajów</div>	
+				</div>
+			</div>
+			<div class="mb-3">
+				<label for="paymentMethod" class="form-label">Wybierz rodzaj płatności &nbsp;<i class="bi bi-question-circle" data-toggle="tooltip" title="Wybierz rodzaj płatności"></i></label>
+				<div id="paymentMethod">
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="paymentOptions"  id="karta" value="karta" required>
+						<label class="form-check-label" for="inlineRadio1">Karta</label>
+					</div>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="paymentOptions"  id="blik" value="blik" required>
+						<label class="form-check-label" for="inlineRadio1">BLIK</label>
+					</div>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="paymentOptions" id="posrednik" value="posrednik" required>
+						<label class="form-check-label" for="inlineRadio2">Pośrednik płatności</label>
+					</div>
+					<div class="valid-feedback">Prawidłowo</div>
+					<div class="invalid-feedback">Proszę zaznaczycn jeden z dostępnych rodzajów płatności</div>	
+				</div>
+			</div>
+			<br>
+			<div class="mb-3">
+				<input type="checkbox" class="form-check-input" id="vatUE">
+				<label class="form-check-label" for="vatUE">Czy posiadasz VAT UE? &nbsp;<i class="bi bi-question-circle" data-toggle="tooltip" title="Zaznacz jeśli posiadasz VAT EU i wprowadz numer"></i></label>
+			</div>
+			<div class="mb-3" id="vatNumberField" style="display: none;">
+				<label for="vatNumber" class="form-label">Numer VAT</label>
+				<input type="text" class="form-control" id="vatNumber" placeholder="Wpisz numer VAT">
+				<div id="vatHelp" class="form-text">Kod kraju państwa członkowskiego i seria cyfr unikalnych dla tego
+					podmiotu gospodarczego.</div>
+			</div>
+
+			<div class="mb-3">
+				<input type="checkbox" class="form-check-input" id="invoiceDataCheckbox">
+				<label class="form-check-label" for="invoiceDataCheckbox">Czy chesz wystawic fakture? &nbsp;<i class="bi bi-question-circle" data-toggle="tooltip" title="Zaznacz jeśli chcesz wystawic fakture"></i></label>
+			</div>
+			
+            <div class="mb-3" id="invoiceDataField" style="display: none;">
                 <label for="invoiceData" class="form-label">Dane do faktury</label>
                 <textarea class="form-control" id="invoiceData" rows="3" placeholder="Wpisz dane do faktury"></textarea>
             </div>
 
             <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
-                data-bs-target="#form-feedback-modal">submit</button>
+                data-bs-target="#form-feedback-modal">Wyślij</button>
+			</div>
         </form>
     </div>
 
